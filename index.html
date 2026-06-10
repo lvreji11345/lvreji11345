@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金字塔拼图游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1b2a 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(30, 60, 120, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(20, 40, 80, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pyramid-container {
+            position: relative;
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+
+        .pyramid {
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 120px solid #c9a227;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(201, 162, 39, 0.5));
+        }
+
+        .pyramid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: -40px;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #d4af37;
+        }
+
+        .title {
+            color: #c9a227;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(201, 162, 39, 0.6), 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 60px;
+            letter-spacing: 8px;
+            z-index: 1;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2) 0%, rgba(201, 162, 39, 0.1) 100%);
+            border: 2px solid #c9a227;
+            color: #e8d5a3;
+            padding: 18px 60px;
+            font-size: 22px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.4) 0%, rgba(201, 162, 39, 0.2) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.4);
+        }
+
+        .menu-btn:hover::before {
+            left: 100%;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+        }
+
+        .subtitle {
+            color: rgba(200, 200, 220, 0.6);
+            font-size: 14px;
+            margin-top: 50px;
+            letter-spacing: 2px;
+            z-index: 1;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="pyramid-container">
+        <div class="pyramid"></div>
+    </div>
+
+    <h1 class="title">金字塔拼图</h1>
+
+    <div class="menu">
+        <button class="menu-btn" onclick="startRandomChallenge()">随机挑战</button>
+        <button class="menu-btn" onclick="showTutorial()">教程</button>
+        <button class="menu-btn" onclick="showAuthorNote()">作者的话</button>
+    </div>
+
+    <p class="subtitle">金字塔拼图游戏</p>
+
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.width = Math.random() * 2 + 1 + 'px';
+                star.style.height = star.style.width;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function startRandomChallenge() {
+            window.location.href = 'game.html';
+        }
+
+        function showTutorial() {
+            window.location.href = 'tutor.html';
+        }
+
+        function showAuthorNote() {
+            window.location.href = 'author.html';
+        }
+
+        createStars();
+    </script>
+</body>
+</html>

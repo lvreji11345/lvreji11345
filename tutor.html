@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教程 - 金字塔拼图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: #c9a227;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .title {
+            font-size: 24px;
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+        }
+
+        .back-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #c9a227, #d4af37);
+            border: none;
+            border-radius: 20px;
+            color: #1a1a2e;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 15px rgba(201, 162, 39, 0.4);
+        }
+
+        .content {
+            padding: 80px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .section-content {
+            line-height: 1.8;
+            font-size: 16px;
+            color: #e0d5a0;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+        }
+
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: rgba(201, 162, 39, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .tip-box {
+            background: rgba(30, 144, 255, 0.1);
+            border-left: 3px solid #1e90ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">游戏教程</h1>
+        <button class="back-btn" onclick="goBack()">返回主页</button>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <div class="section-title">🎮 游戏概述</div>
+            <div class="section-content">
+                <p>金字塔拼图是一款益智解谜游戏，目标是使用12种不同形状的物块填满整个三角形棋盘。每个物块由多个圆盘组成，具有独特的形状和颜色。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎯 游戏目标</div>
+            <div class="section-content">
+                <p>将棋盘上的所有圆盘都填上颜色，每个物块使用一种颜色，且颜色不能重复使用。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">👆 基本操作</div>
+            <div class="section-content">
+                <p>点击选取棋盘上的圆盘使其和预览框中给出的12个中的某一个相同，然后按下键盘上与某一个未被使用的颜色对应的按键（或者懒狗按键R）即可涂色，代表你放下了该物块，同时提示预览框中该物块也会亮起。</p>
+                <p>当你发现填涂错误时可按下空格（不需要选中整个物块，只要有其中一个被选中，整个物块都会被清除）</p>
+                <p>当你填充了所有55个格子时游戏胜利。</p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <img src="tutorial_image.png" alt="长条方块示例" style="max-width: 100%; border-radius: 10px;">
+                    <p style="margin-top: 10px; color: #c9a227;">（按下R即可为这个长条方块涂色）</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">⌨️ 键盘快捷键</div>
+            <div class="section-content">
+                <ul>
+                    <li><span class="highlight">1-9, 0, q, w</span> - 填涂对应颜色</li>
+                    <li><span class="highlight">空格</span> - 清除选中圆盘的颜色</li>
+                    <li><span class="highlight">R</span> - 随机分配颜色（仅对合法物块）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎨 颜色与物块</div>
+            <div class="section-content">
+                <p>游戏中有13种颜色，对应12个物块和1个清除功能：</p>
+                <ul>
+                    <li><span class="color-box" style="background: #ff6b6b;"></span> 红色 - 按键 1</li>
+                    <li><span class="color-box" style="background: #4ecdc4;"></span> 青色 - 按键 2</li>
+                    <li><span class="color-box" style="background: #ffe66d;"></span> 黄色 - 按键 3</li>
+                    <li><span class="color-box" style="background: #a855f7;"></span> 紫色 - 按键 4</li>
+                    <li><span class="color-box" style="background: #22c55e;"></span> 绿色 - 按键 5</li>
+                    <li><span class="color-box" style="background: #f97316;"></span> 橙色 - 按键 6</li>
+                    <li><span class="color-box" style="background: #ec4899;"></span> 粉色 - 按键 7</li>
+                    <li><span class="color-box" style="background: #60a5fa;"></span> 蓝色 - 按键 8</li>
+                    <li><span class="color-box" style="background: #84cc16;"></span> 黄绿色 - 按键 9</li>
+                    <li><span class="color-box" style="background: #f43f5e;"></span> 玫红色 - 按键 0</li>
+                    <li><span class="color-box" style="background: #8888ff;"></span> 浅蓝 - 按键 q</li>
+                    <li><span class="color-box" style="background: #ffff88;"></span> 浅黄 - 按键 w</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">⚙️ 游戏模式</div>
+            <div class="section-content">
+                <p><strong>挑战模式：</strong>系统随机生成题目，显示部分物块作为提示，在限定时间内完成拼图</p>
+                <p><strong>自由模式：</strong>无时间限制，棋盘为空，自由发挥创作</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📊 难度选择</div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>简单：</strong>显示6个物块提示，时间充裕</li>
+                    <li><strong>中等：</strong>显示4个物块提示，时间适中</li>
+                    <li><strong>困难：</strong>显示2个物块提示，时间紧张</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡 游戏技巧</div>
+            <div class="section-content">
+                <ul>
+                    <li>先从边缘和角落开始，逐步向中心填充</li>
+                    <li>观察物块形状，寻找匹配的位置</li>
+                    <li>使用 <span class="highlight">R</span> 键快速填涂已确认的物块</li>
+                    <li>遇到困难时可以暂停游戏思考</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>提示：</strong>物块可以旋转和翻转，尝试不同的方向！
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🏆 胜利条件</div>
+            <div class="section-content">
+                <p>当棋盘上所有55个圆盘都被填涂颜色，且每种颜色只使用一次时，即为胜利！</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

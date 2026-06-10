@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作者的话 - 金字塔拼图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: #c9a227;
+        }
+
+        .title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            line-height: 1.8;
+            font-size: 16px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .back-btn {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #c9a227, #d4af37);
+            border: none;
+            border-radius: 25px;
+            color: #1a1a2e;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(201, 162, 39, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">作者的话</h1>
+    
+    <div class="content">
+        <p>感谢你的游玩，有设计不合理的地方请提出喵，会狠狠改改正的邮箱15165421590@163.com。这个是铝热剂的计科导网页大作业，不要用于奇怪的用途喵。</p>
+        <p>该网页设计共有32288中随机的挑战题目，你很难全都玩全的哦。如果过于困难，作者会考虑加入宝宝难度的。</p>
+        <p>就是这些</p>
+    </div>
+
+    <button class="back-btn" onclick="goBack()">返回主页</button>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
